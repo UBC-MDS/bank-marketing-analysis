@@ -66,11 +66,11 @@ private interaction with the people involved, including unsolicited interaction 
 
 ### 4. Permanent Ban
 
-**Community Impact**: Demonstrating a pattern of violation of project community standards, including sustained inappropriate behavior, harassment of an individual, or aggression toward or disparagement of classes of individuals.
+**Community Impact**: Demonstrating a pattern of violation of project and community standards, including sustained inappropriate behavior, harassment of an individual, or aggression toward or disparagement of classes of individuals.
 
 **Consequence**: A permanent ban from any sort of public interaction within the project and community.
 
 ## Attribution
 
-This Code of Conduct is adapted from the [Contributor Covenant][homepage], version 2.1, available at [https://www.contributor-covenant.org/version/2/1/code_of_conduct.html][v2.1].
+This Code of Conduct is copied and adapted from the Contributor Covenant[https://www.contributor-covenant.org], version 2.1, available at [https://www.contributor-covenant.org/version/2/1/code_of_conduct.html].
 
