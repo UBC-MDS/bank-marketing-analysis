@@ -72,5 +72,5 @@ private interaction with the people involved, including unsolicited interaction 
 
 ## Attribution
 
-This Code of Conduct is copied and adapted from the Contributor Covenant[https://www.contributor-covenant.org], version 2.1, available at [https://www.contributor-covenant.org/version/2/1/code_of_conduct.html].
+This Code of Conduct is copied and adapted from the [Contributor Covenant](https://www.contributor-covenant.org), version 2.1, available at https://www.contributor-covenant.org/version/2/1/code_of_conduct.html.
 
