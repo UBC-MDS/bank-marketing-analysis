@@ -1,3 +1,30 @@
-# bank-marketing-analysis
+# Bank Marketing Data Analysis
 
-Group project.
+- Authors: Marco Bravo, Nasim Ghazanfari Nasrabadi, Shizhe Zhang, Celeste Zhao
+- Milestone 1 for DSCI 522 course
+
+## About
+
+
+
+
+## Report
+
+
+
+## Usage
+
+
+
+## Dependencies
+
+
+
+## License
+
+
+
+## References
+
+
+
