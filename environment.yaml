@@ -16,3 +16,4 @@ dependencies:
   - vegafusion=1.4.3
   - vl-convert-python=1.0.1
   - matplotlib
+  - imbalanced-learn
