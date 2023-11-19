@@ -15,7 +15,7 @@ The dataset used in this project originates from the Bank Marketing dataset crea
 
 ## Report
 
-The final report can be found [here](src/Analysis.ipynb).
+The final report can be found [here](src/analysis.ipynb).
 
 
 ## Usage
