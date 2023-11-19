@@ -6,16 +6,16 @@
 
 ## About
 
-Here we attempt to build a model to predict if the client will subscribe a term deposit, utilizing the information which is related with direct marketing campaigns (phone calls) of a Portuguese banking institution. 
+In this analysis, we attempt to build a predictive model aimed at determining whether a client will subscribe to a term deposit, utilizing the data associated with direct marketing campaigns, specifically phone calls, in a Portuguese banking institution. 
 
-We finally choose logistic regression model to do the prediction. Our final predictor performs fairly well on an unseen test data set, achieving a score of xxx
+After exploring on several models (logistic regression, KNN, decision tree, naive Bayers), we have selected the logistic regression model as our primary predictive tool. The final model performs fairly well when tested on an unseen dataset, achieving the highest AUC (Area Under the Curve) of 0.899. This exceptional AUC score underscores the model's capacity to effectively differentiate between positive and negative outcomes. Notably, certain factors such as last contact duration, last contact month of the year and the clients' types of jobs play a significant role in influencing the classification decision.
 
-The dataset used in this project is the Bank Marketing dataset created by S. Moro, P. Rita and P. Cortez at Iscte - University Institute of Lisbon. It is sourced from the UCI Machine Learning Repository and can be found [here](https://archive.ics.uci.edu/dataset/222/bank+marketing). There are four datasets and we use [bank-full.csv](https://archive.ics.uci.edu/static/public/222/data.csv) which contains all examples and 17 inputs. Each row in the dataset represents a client data including the client's personal information (e.g. age, job, loan, etc.), marketing campaign reaction (e.g. outcome of the previous marketing campaign, number of contacts performed during this campaign, etc.) and term deposit subscription result. 
+The dataset used in this project originates from the Bank Marketing dataset created by S. Moro, P. Rita and P. Cortez at Iscte - University Institute of Lisbon. This dataset is accessible through the UCI Machine Learning Repository and can be accessed [here](https://archive.ics.uci.edu/dataset/222/bank+marketing). Among the four available datasets, we have utilized [bank-full.csv](https://archive.ics.uci.edu/static/public/222/data.csv) which contains all examples and 17 inputs. Each row in the dataset represents an individual client data including the personal details (e.g., age, occupation, loan status, etc.), information regarding their response to the marketing campaign (e.g., outcomes of the previous marketing campaign, number of contacts made during the current campaign, etc.), and the eventual subscription outcome for the term deposit.
 
 
 ## Report
 
-The final report can be found [here] (TBU).
+The final report can be found [here](src/Analysis.ipynb).
 
 
 ## Usage
@@ -33,14 +33,14 @@ conda activate bank_marketing_env
 jupyter lab 
 ```
 
-Open `src/EDA.ipynb` in Jupyter Lab and under the "Kernel" menu click "Restart Kernel and Run All Cells...".
+Open `src/Analysis.ipynb` in Jupyter Lab and under the "Kernel" menu click "Restart Kernel and Run All Cells...".
 
 
 ## Dependencies
 
 - conda (version 23.6.0 or higher)
 - Python (version 3.10.0)
-- Others listed in [environment.yml](environment.yaml)
+- Others listed in [environment.yml](environment.yml)
 
 
 ## License
@@ -52,5 +52,17 @@ Software licensed under the MIT License. See the [license file](LICENSE) for mor
 
 ## References
 
-Moro, S., Cortez, P., & Rita, P. (2014). A data-driven approach to predict the success of bank telemarketing. Decis. Support Syst., 62, 22-31.
+Moro,S., Rita,P., and Cortez,P.. (2012). Bank Marketing. UCI Machine Learning Repository. https://doi.org/10.24432/C5K306.
+
+Davis, J., & Goadrich, M. The Relationship Between Precision-Recall and ROC Curves. https://www.biostat.wisc.edu/~page/rocpr.pdf
+
+Saito, T., & Rehmsmeier, M. (2015). The Precision-Recall Plot Is More Informative than the ROC Plot When Evaluating Binary Classifiers on Imbalanced Datasets. PLOS ONE, 10(3), e0118432. https://doi.org/10.1371/journal.pone.0118432
+
+Flach, P. A., & Kull, M. Precision-Recall-Gain Curves: PR Analysis Done Right. https://papers.nips.cc/paper/2015/file/33e8075e9970de0cfea955afd4644bb2-Paper.pdf
+
+Dwork, C., Feldman, V., Hardt, M., Pitassi, T., Reingold, O., & Roth, A. (2015, September 28). Generalization in Adaptive Data Analysis and Holdout Reuse. https://arxiv.org/pdf/1506.02629.pdf
+
+Turkes (Vînt), M. C. (Year, if available). Concept and Evolution of Bank Marketing. Transylvania University of Brasov Faculty of Economic Sciences. Retrieved from link to the PDF or ResearchGate. https://www.researchgate.net/publication/49615486_CONCEPT_AND_EVOLUTION_OF_BANK_MARKETING/fulltext/0ffc5db50cf255165fc80b80/CONCEPT-AND-EVOLUTION-OF-BANK-MARKETING.pdf
+
+Moro, S., Cortez, P., & Rita, P. (2014). A data-driven approach to predict the success of bank telemarketing. Decis. Support Syst., 62, 22-31. https://repositorio.iscte-iul.pt/bitstream/10071/9499/5/dss_v3.pdf
 
