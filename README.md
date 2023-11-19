@@ -40,7 +40,7 @@ Open `src/Analysis.ipynb` in Jupyter Lab and under the "Kernel" menu click "Rest
 
 - conda (version 23.6.0 or higher)
 - Python (version 3.10.0)
-- Others listed in [environment.yml](environment.yml)
+- Others listed in [environment.yml](environment.yaml)
 
 
 ## License
