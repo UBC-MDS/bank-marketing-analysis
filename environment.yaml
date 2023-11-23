@@ -4,8 +4,10 @@ channels:
   - defaults
 dependencies:
   - altair=5.1.2
+  - imbalanced-learn
   - ipykernel=6.26.0
   - jupyter_contrib_nbextensions=0.7.0
+  - matplotlib
   - notebook=6.5.4
   - pandas==2.1.1
   - python
@@ -15,5 +17,4 @@ dependencies:
   - vegafusion-python-embed=1.4.3
   - vegafusion=1.4.3
   - vl-convert-python=1.0.1
-  - matplotlib
-  - imbalanced-learn
+  - pytest=7.4.3
