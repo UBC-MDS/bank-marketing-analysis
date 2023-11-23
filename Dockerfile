@@ -1,3 +1,5 @@
+# test
+
 FROM quay.io/jupyter/minimal-notebook:2023-11-19
 
 RUN conda install -y pandas=2.1.2 \
@@ -15,4 +17,4 @@ RUN conda install -y pandas=2.1.2 \
     vegafusion-python-embed=1.4.3 \
     vegafusion=1.4.3 \
     vl-convert-python=1.0.1 \
-    pytest=7.4.3
+    pytest=7.4.3it
