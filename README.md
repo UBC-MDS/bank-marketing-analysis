@@ -18,22 +18,25 @@ The dataset used in this project originates from the Bank Marketing dataset crea
 The final report can be found [here](src/analysis.html).
 
 
-## Usage
+## Usage and Dependencies
+Docker is used in this project for software dependencies management. The Docker image for this this project is built up on quay.io/jupyter/minimal-notebook:2023-11-19. In the Dockerfile, it specifies additional packages and dependencies required for this project.
 
-First time running the project, run the following from the root of this repository:
+##Setup:
+Clone the GitHub repo using the following command:
 
-``` bash
-conda env create --file environment.yml
-```
+git clone <http/ssh link>
+Install and launch Docker on local computer and keep it run.
 
-To run the analysis, run the following from the root of this repository:
+On terminal, navigate to the project local root directry and run the following command to start and run the container:
 
-``` bash
-conda activate bank_marketing_env
-jupyter lab 
-```
+docker compose up
+Note: please ensure your localhost port 8888:8888 is not occupied before you run the command above.
 
-Open `src/Analysis.ipynb` in Jupyter Lab and under the "Kernel" menu click "Restart Kernel and Run All Cells...".
+To bring up the web app for Jupyter Notebook in the container, look for the url starting with http://127.0.0.1:8888/lab?token= in terminal and copy it to browser.
+
+Exit container:
+In terminal, hit Cntrl + C to stop running the container. Then use the following command to remove the container:
+docker compose rm -f
 
 
 ## Dependencies
