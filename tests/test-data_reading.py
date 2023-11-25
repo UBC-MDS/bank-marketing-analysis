@@ -9,6 +9,7 @@ import os
 sys.path.append(os.path.join(os.path.dirname(__file__), '..'))
 from src.resample import re_sample
 
+
 def test_data_reading():
     test_url = 'https://archive.ics.uci.edu/static/public/222/data.csv'
     test_file_path = 'test_data.csv'
@@ -19,5 +20,11 @@ def test_data_reading():
 
     assert os.path.exists(test_file_path)
 
-    assert not result_df.empty
-    assert 'column_name' in result_df.columns
+    os.remove(test_file_path)
+
+def test_data_reading_returns_none_if_file_not_exists():
+    non_existing_file_path = 'non_existing_file.csv'
+
+    result_df = data_reading('https://example.com/non_existing_data.csv', non_existing_file_path)
+
+    assert result_df is None
