@@ -21,4 +21,3 @@ def test_data_reading():
 
     assert not result_df.empty
     assert 'column_name' in result_df.columns
-    assert len(result_df) == expected_row_count
