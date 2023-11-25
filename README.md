@@ -21,10 +21,10 @@ The final report can be found [here](src/analysis.html).
 ## Usage and Dependencies
 Docker is used in this project for software dependencies management. The Docker image for this this project is built up on quay.io/jupyter/minimal-notebook:2023-11-19. In the Dockerfile, it specifies additional packages and dependencies required for this project.
 
-##Setup:
 Clone the GitHub repo using the following command:
 
 git clone <http/ssh link>
+
 Install and launch Docker on local computer and keep it run.
 
 On terminal, navigate to the project local root directry and run the following command to start and run the container:
@@ -36,6 +36,7 @@ To bring up the web app for Jupyter Notebook in the container, look for the url 
 
 Exit container:
 In terminal, hit Cntrl + C to stop running the container. Then use the following command to remove the container:
+
 docker compose rm -f
 
 
