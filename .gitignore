@@ -10,3 +10,6 @@ __pycache__/
 # MAC DS_STORE
 .DS_Store
 
+# Just in case
+.RData
+.Rhistory
