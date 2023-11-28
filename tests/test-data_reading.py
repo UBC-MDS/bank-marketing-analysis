@@ -7,7 +7,7 @@ import os
 
 # Import the re_sample function from the src folder
 sys.path.append(os.path.join(os.path.dirname(__file__), '..'))
-from src.resample import re_sample
+from src.data_reading import data_reading
 
 
 def test_data_reading():
