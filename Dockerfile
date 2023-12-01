@@ -10,8 +10,8 @@ RUN conda install -y pandas=2.1.2 \
     ipykernel=6.26.0 \
     jupyter_contrib_nbextensions=0.7.0 \
     matplotlib \
-    notebook=6.5.4 \
-    python \
+    notebook=7.0.6 \
+    python=3.11.6 \
     requests=2.31.0 \
     scikit-learn=1.3.2 \
     vegafusion-jupyter=1.4.3 \
