@@ -1,3 +1,4 @@
+
 # Use Jupyter's minimal-notebook as base image
 FROM quay.io/jupyter/minimal-notebook:notebook-7.0.6
 
@@ -17,4 +18,8 @@ RUN conda install -y pandas=2.1.2 \
     vegafusion-python-embed=1.4.3 \
     vegafusion=1.4.3 \
     vl-convert-python=1.0.1 \
-    pytest=7.4.3
+    pytest=7.4.3it \
+    responses=0.24.1 \
+    click=8.1.7 \
+    vl-convert-python=1.1.0 \
+    jupyter-book=0.15.1
