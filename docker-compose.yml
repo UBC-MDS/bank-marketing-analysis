@@ -1,0 +1,12 @@
+services:
+  bank-marketing-analysis:
+    image: shizhezhang/bank-marketing-analysis:78ef7d0
+    ports:
+      - "8888:8888"
+    volumes:
+      - .:/home/jovyan/work
+    deploy:
+      resources:
+        limits:
+          memory: 5G
+    platform: linux/amd64
