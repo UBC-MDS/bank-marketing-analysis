@@ -1,0 +1,3 @@
+Parameter,Value
+decisiontreeclassifier__max_depth,6
+decisiontreeclassifier__criterion,entropy

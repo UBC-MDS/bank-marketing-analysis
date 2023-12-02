@@ -28,12 +28,12 @@ python scripts/fit_bank_classifier.py \
     --save_plot_to='results/figures' \
     --seed=522
 
-# evaluate model on test data and save results
-python scripts/evaluate_breast_cancer_predictor.py \
-   --scaled-test-data=data/processed/cancer_test.csv \
-   --pipeline-from=results/models/cancer_pipeline.pickle \
-   --results-to=results/tables \
-   --seed=524
+# evaluate model
+python scripts/feat_imp.py \
+     --resampled_training_data='data/processed/X_train_trans.csv' \
+     --pipeline_model='results/models/logistic_pipeline.pickle' \
+     --save_plot_to='results/figures' 
+     --seed=522
 
 # run the docker under the root folder of the project to open the jupyter lab
 docker compose up jupyter-lab

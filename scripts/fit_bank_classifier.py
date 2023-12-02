@@ -2,6 +2,8 @@ import click
 import os
 import pandas as pd
 import pickle
+import numpy as np
+import matplotlib.pyplot as plt
 from sklearn.neighbors import KNeighborsClassifier
 from sklearn.pipeline import make_pipeline
 from sklearn.model_selection import GridSearchCV, RandomizedSearchCV
@@ -71,7 +73,7 @@ def main(resampled_training_data, resampled_training_response, test_data, test_r
         --seed=522
     ```
     '''
-
+    np.random.seed(seed)
     RANDOM_STATE = seed
 
     X_tr = pd.read_csv(resampled_training_data, sep=",", index_col=0)    
@@ -128,6 +130,8 @@ def main(resampled_training_data, resampled_training_response, test_data, test_r
 
     # dfi.export(params_df, os.path.join(save_plot_to, 'lr_best_params.png'), table_conversion='chrome', fontsize=40, max_rows=None, max_cols=None)
     # dfi.export(score_df, os.path.join(save_plot_to, 'lr_best_score.png'), table_conversion='chrome', fontsize=40, max_rows=None, max_cols=None)
+    params_df.to_csv(os.path.join(save_plot_to, 'lr_best_params.csv'), index=False)
+    score_df.to_csv(os.path.join(save_plot_to, 'lr_best_score.csv'), index=False)
 
 
     # Logistic Regression: On the test set
@@ -155,6 +159,8 @@ def main(resampled_training_data, resampled_training_response, test_data, test_r
 
     # dfi.export(classification_rep, os.path.join(save_plot_to, 'lr_class_rep.png'), table_conversion='chrome', fontsize=40, max_rows=None, max_cols=None)
     # dfi.export(model_lr, os.path.join(save_plot_to, 'lr_model.png'), table_conversion='chrome', fontsize=40, max_rows=None, max_cols=None)
+    classification_rep.to_csv(os.path.join(save_plot_to, 'lr_class_rep.csv'), index=False)
+    model_lr.to_csv(os.path.join(save_plot_to, 'lr_model.csv'), index=False)
 
 
 
@@ -195,7 +201,8 @@ def main(resampled_training_data, resampled_training_response, test_data, test_r
 
     # dfi.export(params_df, os.path.join(save_plot_to, 'KNN_best_params.png'), table_conversion='chrome', fontsize=40, max_rows=None, max_cols=None)
     # dfi.export(score_df, os.path.join(save_plot_to, 'KNN_best_score.png'), table_conversion='chrome', fontsize=40, max_rows=None, max_cols=None)
-
+    params_df.to_csv(os.path.join(save_plot_to, 'KNN_best_params.csv'), index=False)
+    score_df.to_csv(os.path.join(save_plot_to, 'KNN_best_score.csv'), index=False)
 
     # KNN: On the test set
         # Use the selected hyperparameters
@@ -222,6 +229,8 @@ def main(resampled_training_data, resampled_training_response, test_data, test_r
 
     # dfi.export(classification_rep, os.path.join(save_plot_to, 'KNN_class_rep.png'), table_conversion='chrome', fontsize=40, max_rows=None, max_cols=None)
     # dfi.export(model_knn, os.path.join(save_plot_to, 'KNN_model.png'), table_conversion='chrome', fontsize=40, max_rows=None, max_cols=None)
+    classification_rep.to_csv(os.path.join(save_plot_to, 'KNN_class_rep.csv'), index=False)
+    model_knn.to_csv(os.path.join(save_plot_to, 'KNN_model.csv'), index=False)
 
     # Decision Tree: Tuning
 
@@ -263,7 +272,8 @@ def main(resampled_training_data, resampled_training_response, test_data, test_r
 
     # dfi.export(params_df, os.path.join(save_plot_to, 'dt_best_params.png'), table_conversion='chrome', fontsize=40, max_rows=None, max_cols=None)
     # dfi.export(score_df, os.path.join(save_plot_to, 'dt_best_score.png'), table_conversion='chrome', fontsize=40, max_rows=None, max_cols=None)
-
+    params_df.to_csv(os.path.join(save_plot_to, 'dt_best_params.csv'), index=False)
+    score_df.to_csv(os.path.join(save_plot_to, 'dt_best_score.csv'), index=False)
 
     # Decision Tree: On the test set
     # Use the selected hyperparameters
@@ -290,6 +300,8 @@ def main(resampled_training_data, resampled_training_response, test_data, test_r
 
     # dfi.export(classification_rep, os.path.join(save_plot_to, 'dt_class_rep.png'), table_conversion='chrome', fontsize=40, max_rows=None, max_cols=None)
     # dfi.export(model_dt, os.path.join(save_plot_to, 'dt_model.png'), table_conversion='chrome', fontsize=40, max_rows=None, max_cols=None)
+    classification_rep.to_csv(os.path.join(save_plot_to, 'dt_class_rep.csv'), index=False)
+    model_dt.to_csv(os.path.join(save_plot_to, 'dt_model.csv'), index=False)
 
     # Naive Bayes: Tuning
     param_dist = {
@@ -329,7 +341,8 @@ def main(resampled_training_data, resampled_training_response, test_data, test_r
 
     # dfi.export(params_df, os.path.join(save_plot_to, 'nb_best_params.png'), table_conversion='chrome', fontsize=40, max_rows=None, max_cols=None)
     # dfi.export(score_df, os.path.join(save_plot_to, 'nb_best_score.png'), table_conversion='chrome', fontsize=40, max_rows=None, max_cols=None)
-
+    params_df.to_csv(os.path.join(save_plot_to, 'nb_best_params.csv'), index=False)
+    score_df.to_csv(os.path.join(save_plot_to, 'nb_best_score.csv'), index=False)
 
     # Naive Bayes: On the test set
     # Use the selected hyperparameters
@@ -353,7 +366,31 @@ def main(resampled_training_data, resampled_training_response, test_data, test_r
 
     # dfi.export(classification_rep, os.path.join(save_plot_to, 'nb_class_rep.png'), table_conversion='chrome', fontsize=40, max_rows=None, max_cols=None)
     # dfi.export(model_nb, os.path.join(save_plot_to, 'nb_model.png'), table_conversion='chrome', fontsize=40, max_rows=None, max_cols=None)
+    classification_rep.to_csv(os.path.join(save_plot_to, 'nb_class_rep.csv'), index=False)
+    model_nb.to_csv(os.path.join(save_plot_to, 'nb_model.csv'), index=False)
 
+    # Performance
+    plt.figure(figsize=(10,10))
+    plt.title('Receiver Operating Characteristic')
+
+
+    plt.plot(fpr_lr, tpr_lr, 'b', label = '{:<20} = {:0.3f}'.format("Logistic Regression",auc_lr))
+    plt.plot(fpr_knn, tpr_knn, 'r', label = '{:<20} = {:0.3f}'.format("KNN",auc_knn))
+    plt.plot(fpr_nb, tpr_nb, 'y', label = '{:<20} = {:0.3f}'.format("Naive Bayes",auc_nb))
+    plt.plot(fpr_dt, tpr_dt, 'c', label = '{:<20} = {:0.3f}'.format("Decision Tree",auc_dt))
+
+    plt.legend(loc = 'lower right',prop={'family': 'monospace'})
+    plt.plot([0, 1], [0, 1],'r--')
+    plt.xlim([0, 1])
+    plt.ylim([0, 1])
+    plt.ylabel('True Positive Rate')
+    plt.xlabel('False Positive Rate')
+    # plt.show()
+
+    plt.savefig(os.path.join(save_plot_to, 'all_roc_auc.png'), bbox_inches='tight', dpi=200)
+    all_models = pd.concat([model_lr,model_knn, model_dt, model_nb]).sort_values(by=['Area_under_curve'], ascending=False).reset_index(drop=True)
+
+    all_models.to_csv(os.path.join(save_plot_to, 'all_models.csv'), index=False)
 
 if __name__ == '__main__':
     main()

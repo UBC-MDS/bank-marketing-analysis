@@ -1,6 +1,7 @@
 import click
 import os
 import pandas as pd
+import numpy as np
 import pickle
 from sklearn.model_selection import train_test_split
 from sklearn.preprocessing import OrdinalEncoder, StandardScaler, OneHotEncoder
@@ -37,7 +38,7 @@ def main(raw_data, save_to, preprocessor_to, seed):
     python scripts/split_and_process.py --raw_data='data/raw/bank-full.csv' --save_to='data/processed' --preprocessor_to='results/models' --seed=522
     ```
     """
-
+    np.random.seed(seed)
     RANDOM_STATE = seed
     bank = pd.read_csv(raw_data, sep=',', index_col=0)
 
@@ -99,6 +100,17 @@ def main(raw_data, save_to, preprocessor_to, seed):
         ('categorical', categorical_transformer, categorical_features),
         ('drop', 'passthrough', drop_features)
     ])
+
+    transformed_train = preprocessor.fit_transform(X_train)
+    column_names = (
+    numeric_features +
+    ordinal_features +
+    preprocessor.named_transformers_['binary'].named_steps['onehotencoder'].get_feature_names_out().tolist() +
+    preprocessor.named_transformers_['categorical'].named_steps['onehotencoder'].get_feature_names_out().tolist() 
+    )
+
+    X_train_trans = pd.DataFrame(transformed_train, columns=column_names)
+    X_train_trans.to_csv(os.path.join(save_to, "X_train_trans.csv"))
 
     pickle.dump(preprocessor, open(os.path.join(preprocessor_to, "bank_preprocessor.pickle"), "wb"))
 
