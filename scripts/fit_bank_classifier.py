@@ -57,135 +57,135 @@ def main(resampled_training_data, resampled_training_response, test_data, test_r
 
     # Logistic Regression: Tuning
   
-    # param_dist = {
-    #     "logisticregression__C": loguniform(1e-3, 1e3)
-    #     }
+    param_dist = {
+        "logisticregression__C": loguniform(1e-3, 1e3)
+        }
 
 
-    # pipe = make_pipeline(
-    #     preprocessor,
-    #     models['Logistic Regression']  
-    #     )
+    pipe = make_pipeline(
+        preprocessor,
+        models['Logistic Regression']  
+        )
 
-    # random_search = RandomizedSearchCV(pipe, 
-    #                                 param_dist, 
-    #                                 n_iter=100, 
-    #                                 n_jobs=-1, 
-    #                                 cv=5,
-    #                                 scoring=classification_metrics,
-    #                                 refit='roc_auc',
-    #                                 return_train_score=True,
-    #                                 random_state=RANDOM_STATE
-    #                                 )
-    # random_search.fit(X_tr, y_tr)
+    random_search = RandomizedSearchCV(pipe, 
+                                    param_dist, 
+                                    n_iter=100, 
+                                    n_jobs=-1, 
+                                    cv=5,
+                                    scoring=classification_metrics,
+                                    refit='roc_auc',
+                                    return_train_score=True,
+                                    random_state=RANDOM_STATE
+                                    )
+    random_search.fit(X_tr, y_tr)
 
-    # with open(os.path.join(save_pipelines_to, "logistic_random_search.pickle"), 'wb') as f:
-    #     pickle.dump(random_search, f)
+    with open(os.path.join(save_pipelines_to, "logistic_random_search.pickle"), 'wb') as f:
+        pickle.dump(random_search, f)
 
-    # random_search.best_params_
+    random_search.best_params_
 
-    # random_search.best_score_
-
-
-    # params_df = pd.DataFrame(list(random_search.best_params_.items()), columns=['Parameter', 'Value'])
-    # score_df = pd.DataFrame({"Metric": ["Best Score"], "Value": [random_search.best_score_]})
-
-    # dfi.export(params_df, os.path.join(save_plot_to, 'lr_best_params.png'), table_conversion='chrome', fontsize=40, max_rows=None, max_cols=None)
-    # dfi.export(score_df, os.path.join(save_plot_to, 'lr_best_score.png'), table_conversion='chrome', fontsize=40, max_rows=None, max_cols=None)
+    random_search.best_score_
 
 
-    # # Logistic Regression: On the test set
+    params_df = pd.DataFrame(list(random_search.best_params_.items()), columns=['Parameter', 'Value'])
+    score_df = pd.DataFrame({"Metric": ["Best Score"], "Value": [random_search.best_score_]})
 
-    # # Use the selected hyperparameters
-    # best_C = random_search.best_params_['logisticregression__C']
-    # plot_confusion_matrix = True
-
-    # pipe_lr = make_pipeline(
-    #     preprocessor,
-    #     LogisticRegression(C=best_C,
-    #                         random_state=RANDOM_STATE) 
-    #     )
-    # # Train the model
-    # pipe_lr.fit(X_tr,  y_tr)
-
-    # with open(os.path.join(save_pipelines_to, "logistic_pipeline.pickle"), 'wb') as f:
-    #     pickle.dump(pipe_lr, f)
-
-    # fig_lr, ax_lr, fpr_lr, tpr_lr, auc_lr = compute_and_plot_roc_curve(pipe_lr, X_test,  y_test, "Logistic Regression")
-
-    # fig_lr.savefig(os.path.join(save_plot_to, 'lr_roc_auc.png'), bbox_inches='tight', dpi=200)
-
-    # model_lr, classification_rep = model_report(pipe_lr, X_test, y_test, "Logistic Regression", os.path.join(save_plot_to, 'lr_conf_matr.png'))
-
-    # dfi.export(classification_rep, os.path.join(save_plot_to, 'lr_class_rep.png'), table_conversion='chrome', fontsize=40, max_rows=None, max_cols=None)
-    # dfi.export(model_lr, os.path.join(save_plot_to, 'lr_model.png'), table_conversion='chrome', fontsize=40, max_rows=None, max_cols=None)
+    dfi.export(params_df, os.path.join(save_plot_to, 'lr_best_params.png'), table_conversion='chrome', fontsize=40, max_rows=None, max_cols=None)
+    dfi.export(score_df, os.path.join(save_plot_to, 'lr_best_score.png'), table_conversion='chrome', fontsize=40, max_rows=None, max_cols=None)
 
 
+    # Logistic Regression: On the test set
 
-    # # KNN: Tuning
-    # param_dist = {
-    #     "kneighborsclassifier__n_neighbors": range(10,50),
-    #     "kneighborsclassifier__weights":['uniform', 'distance']
-    # }
+    # Use the selected hyperparameters
+    best_C = random_search.best_params_['logisticregression__C']
+    plot_confusion_matrix = True
 
-    # pipe = make_pipeline(
-    #     preprocessor,
-    #     models['KNN']  
-    #     )
+    pipe_lr = make_pipeline(
+        preprocessor,
+        LogisticRegression(C=best_C,
+                            random_state=RANDOM_STATE) 
+        )
+    # Train the model
+    pipe_lr.fit(X_tr,  y_tr)
 
-    # grid_search = GridSearchCV(pipe, 
-    #                             param_dist, 
-    #                             n_jobs=-1, 
-    #                             cv=5,
-    #                             scoring=classification_metrics,
-    #                             refit='roc_auc',
-    #                             return_train_score=True
-    #                             )
+    with open(os.path.join(save_pipelines_to, "logistic_pipeline.pickle"), 'wb') as f:
+        pickle.dump(pipe_lr, f)
+
+    fig_lr, ax_lr, fpr_lr, tpr_lr, auc_lr = compute_and_plot_roc_curve(pipe_lr, X_test,  y_test, "Logistic Regression")
+
+    fig_lr.savefig(os.path.join(save_plot_to, 'lr_roc_auc.png'), bbox_inches='tight', dpi=200)
+
+    model_lr, classification_rep = model_report(pipe_lr, X_test, y_test, "Logistic Regression", os.path.join(save_plot_to, 'lr_conf_matr.png'))
+
+    dfi.export(classification_rep, os.path.join(save_plot_to, 'lr_class_rep.png'), table_conversion='chrome', fontsize=40, max_rows=None, max_cols=None)
+    dfi.export(model_lr, os.path.join(save_plot_to, 'lr_model.png'), table_conversion='chrome', fontsize=40, max_rows=None, max_cols=None)
 
 
 
-    # grid_search.fit(X_tr, y_tr)
+    # KNN: Tuning
+    param_dist = {
+        "kneighborsclassifier__n_neighbors": range(10,50),
+        "kneighborsclassifier__weights":['uniform', 'distance']
+    }
 
-    # with open(os.path.join(save_pipelines_to, "KNN_grid_search.pickle"), 'wb') as f:
-    #     pickle.dump(grid_search, f)
+    pipe = make_pipeline(
+        preprocessor,
+        models['KNN']  
+        )
 
-    # grid_search.best_params_
-
-    # grid_search.best_score_
-
-
-    # params_df = pd.DataFrame(list(grid_search.best_params_.items()), columns=['Parameter', 'Value'])
-    # score_df = pd.DataFrame({"Metric": ["Best Score"], "Value": [grid_search.best_score_]})
-
-    # dfi.export(params_df, os.path.join(save_plot_to, 'KNN_best_params.png'), table_conversion='chrome', fontsize=40, max_rows=None, max_cols=None)
-    # dfi.export(score_df, os.path.join(save_plot_to, 'KNN_best_score.png'), table_conversion='chrome', fontsize=40, max_rows=None, max_cols=None)
+    grid_search = GridSearchCV(pipe, 
+                                param_dist, 
+                                n_jobs=-1, 
+                                cv=5,
+                                scoring=classification_metrics,
+                                refit='roc_auc',
+                                return_train_score=True
+                                )
 
 
-    # # KNN: On the test set
-    #     # Use the selected hyperparameters
-    # best_n_neighbors = grid_search.best_params_['kneighborsclassifier__n_neighbors']
-    # best_weights = grid_search.best_params_['kneighborsclassifier__weights']
 
-    # pipe = make_pipeline(
-    #     preprocessor,
-    #     KNeighborsClassifier(n_neighbors=best_n_neighbors,
-    #                         weights=best_weights
-    #                         ) 
-    #     )
-    # # Train the model
-    # pipe.fit(X_tr,  y_tr)
+    grid_search.fit(X_tr, y_tr)
 
-    # with open(os.path.join(save_pipelines_to, "KNN_pipeline.pickle"), 'wb') as f:
-    #     pickle.dump(pipe, f)
+    with open(os.path.join(save_pipelines_to, "KNN_grid_search.pickle"), 'wb') as f:
+        pickle.dump(grid_search, f)
 
-    # fig_knn, ax_knn, fpr_knn, tpr_knn, auc_knn = compute_and_plot_roc_curve(pipe, X_test,  y_test, "KNN")
+    grid_search.best_params_
 
-    # model_knn, classification_rep = model_report(pipe, X_test, y_test, "KNN", os.path.join(save_plot_to, 'KNN_conf_matr.png'))
+    grid_search.best_score_
+
+
+    params_df = pd.DataFrame(list(grid_search.best_params_.items()), columns=['Parameter', 'Value'])
+    score_df = pd.DataFrame({"Metric": ["Best Score"], "Value": [grid_search.best_score_]})
+
+    dfi.export(params_df, os.path.join(save_plot_to, 'KNN_best_params.png'), table_conversion='chrome', fontsize=40, max_rows=None, max_cols=None)
+    dfi.export(score_df, os.path.join(save_plot_to, 'KNN_best_score.png'), table_conversion='chrome', fontsize=40, max_rows=None, max_cols=None)
+
+
+    # KNN: On the test set
+        # Use the selected hyperparameters
+    best_n_neighbors = grid_search.best_params_['kneighborsclassifier__n_neighbors']
+    best_weights = grid_search.best_params_['kneighborsclassifier__weights']
+
+    pipe = make_pipeline(
+        preprocessor,
+        KNeighborsClassifier(n_neighbors=best_n_neighbors,
+                            weights=best_weights
+                            ) 
+        )
+    # Train the model
+    pipe.fit(X_tr,  y_tr)
+
+    with open(os.path.join(save_pipelines_to, "KNN_pipeline.pickle"), 'wb') as f:
+        pickle.dump(pipe, f)
+
+    fig_knn, ax_knn, fpr_knn, tpr_knn, auc_knn = compute_and_plot_roc_curve(pipe, X_test,  y_test, "KNN")
+
+    model_knn, classification_rep = model_report(pipe, X_test, y_test, "KNN", os.path.join(save_plot_to, 'KNN_conf_matr.png'))
     
-    # fig_knn.savefig(os.path.join(save_plot_to, 'KNN_roc_auc.png'), bbox_inches='tight', dpi=200)
+    fig_knn.savefig(os.path.join(save_plot_to, 'KNN_roc_auc.png'), bbox_inches='tight', dpi=200)
 
-    # dfi.export(classification_rep, os.path.join(save_plot_to, 'KNN_class_rep.png'), table_conversion='chrome', fontsize=40, max_rows=None, max_cols=None)
-    # dfi.export(model_knn, os.path.join(save_plot_to, 'KNN_model.png'), table_conversion='chrome', fontsize=40, max_rows=None, max_cols=None)
+    dfi.export(classification_rep, os.path.join(save_plot_to, 'KNN_class_rep.png'), table_conversion='chrome', fontsize=40, max_rows=None, max_cols=None)
+    dfi.export(model_knn, os.path.join(save_plot_to, 'KNN_model.png'), table_conversion='chrome', fontsize=40, max_rows=None, max_cols=None)
 
     # Decision Tree: Tuning
 
@@ -211,7 +211,7 @@ def main(resampled_training_data, resampled_training_response, test_data, test_r
                                     )
     
     # Train the model
-    pipe.fit(X_tr, y_tr)
+    random_search.fit(X_tr, y_tr)
 
 
     with open(os.path.join(save_pipelines_to, "tree_random_search.pickle"), 'wb') as f:
@@ -225,8 +225,8 @@ def main(resampled_training_data, resampled_training_response, test_data, test_r
     params_df = pd.DataFrame(list(random_search.best_params_.items()), columns=['Parameter', 'Value'])
     score_df = pd.DataFrame({"Metric": ["Best Score"], "Value": [random_search.best_score_]})
 
-    dfi.export(params_df, os.path.join(save_plot_to, 'tree_best_params.png'), table_conversion='chrome', fontsize=40, max_rows=None, max_cols=None)
-    dfi.export(score_df, os.path.join(save_plot_to, 'tree_best_score.png'), table_conversion='chrome', fontsize=40, max_rows=None, max_cols=None)
+    dfi.export(params_df, os.path.join(save_plot_to, 'dt_best_params.png'), table_conversion='chrome', fontsize=40, max_rows=None, max_cols=None)
+    dfi.export(score_df, os.path.join(save_plot_to, 'dt_best_score.png'), table_conversion='chrome', fontsize=40, max_rows=None, max_cols=None)
 
 
     # Decision Tree: On the test set
@@ -277,7 +277,7 @@ def main(resampled_training_data, resampled_training_response, test_data, test_r
                                     )
     
         # Train the model
-    pipe.fit(X_tr, y_tr)
+    random_search.fit(X_tr, y_tr)
 
 
     with open(os.path.join(save_pipelines_to, "nb_random_search.pickle"), 'wb') as f:
