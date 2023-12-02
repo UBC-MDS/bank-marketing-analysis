@@ -4,5 +4,5 @@ date: "2023-11-28"
 # sphinx:
 #   config:
 #     bibtex_reference_style: author_year
-#execute:
-#  execute_notebooks: force 
+execute:
+ execute_notebooks: force 
