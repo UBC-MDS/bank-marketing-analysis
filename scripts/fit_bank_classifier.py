@@ -1,14 +1,10 @@
 import click
 import os
-import altair as alt
-import numpy as np
 import pandas as pd
 import pickle
-from sklearn import set_config
 from sklearn.neighbors import KNeighborsClassifier
 from sklearn.pipeline import make_pipeline
 from sklearn.model_selection import GridSearchCV, RandomizedSearchCV
-from sklearn.metrics import fbeta_score, make_scorer
 from sklearn.naive_bayes import GaussianNB
 from sklearn.tree import DecisionTreeClassifier
 from sklearn.linear_model import LogisticRegression
