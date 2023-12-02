@@ -1,8 +1,8 @@
 title: "Bank Marketing Analysis Report"
 author: "Shizhe Zhang, Marco Bravo, Nasim, Celeste Zhao"
-date: "2023-11-28"
-# sphinx:
-#   config:
-#     bibtex_reference_style: author_year
+date: "2023-12-01"
+sphinx:
+  config:
+    bibtex_reference_style: author_year
 execute:
  execute_notebooks: force 
