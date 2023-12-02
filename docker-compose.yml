@@ -1,10 +1,20 @@
 services:
-  bank-marketing-analysis:
+  jupyter-lab:
     image: shizhezhang/bank-marketing-analysis:6b67f6b
     ports:
       - "8888:8888"
     volumes:
       - .:/home/jovyan/work
+    deploy:
+      resources:
+        limits:
+          memory: 5G
+    platform: linux/amd64
+
+  terminal:
+    image: shizhezhang/bank-marketing-analysis:6b67f6b
+    volumes:
+      - .:/home/jovyan
     deploy:
       resources:
         limits:
