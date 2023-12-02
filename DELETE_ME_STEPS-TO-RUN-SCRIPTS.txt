@@ -1,0 +1,43 @@
+# Download and save data
+python scripts/data_download.py \
+   --url='https://archive.ics.uci.edu/static/public/222/data.csv' \
+   --save_path='data/raw'
+
+# Split data (train-test), process data and save preprocessorsplit
+python scripts/split_and_process.py \
+   --raw_data='data/raw/bank-full.csv' \
+   --save_to='data/processed' \
+   --preprocessor_to='results/models' \ 
+   --seed=522
+
+# eda plots
+
+python scripts/eda.py \
+   --training_data='data/processed/bank_train.csv' \
+   --save_plot_to='results/figures'
+
+
+# model training, tuning, and save plot and model
+python scripts/fit_bank_classifier.py \
+    --resampled_training_data='data/processed/X_train_resmp.csv' \
+    --resampled_training_response='data/processed/y_train_resmp.csv' \
+    --test_data='data/processed/X_test.csv' \
+    --test_response='data/processed/y_test.csv' \
+    --preprocessor_pipe='results/models/bank_preprocessor.pickle' \
+    --save_pipelines_to='results/models' \
+    --save_plot_to='results/figures' \
+    --seed=522
+
+# evaluate model on test data and save results
+python scripts/evaluate_breast_cancer_predictor.py \
+   --scaled-test-data=data/processed/cancer_test.csv \
+   --pipeline-from=results/models/cancer_pipeline.pickle \
+   --results-to=results/tables \
+   --seed=524
+
+# build HTML report and copy build to docs folder
+jupyter-book build report
+cp -r report/_build/html/* docs
+
+Issue detected: Log continuous instead of log categorical subtitle
+Need to add: dataframe_image version 0.2.2 to dockerfile and/or env
