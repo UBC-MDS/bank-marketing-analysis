@@ -1,0 +1,8 @@
+title: "Predicting breast cancer from digitized images of breast mass"
+author: "Tiffany Timbers, Joel Ostblom, Melissa Lee"
+date: "2023-11-28"
+# sphinx:
+#   config:
+#     bibtex_reference_style: author_year
+#execute:
+#  execute_notebooks: force 
