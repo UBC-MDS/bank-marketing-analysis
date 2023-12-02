@@ -1,0 +1,2 @@
+Model,Recall_score,Precision,f1_score,Area_under_curve
+Decision Tree,0.8298676748582231,0.3068857042991961,0.4480734881347283,0.868720947712689

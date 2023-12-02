@@ -1,0 +1,3 @@
+Parameter,Value
+kneighborsclassifier__n_neighbors,34
+kneighborsclassifier__weights,distance

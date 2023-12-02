@@ -1,0 +1,2 @@
+Model,Recall_score,Precision,f1_score,Area_under_curve
+Logistic Regression,0.7882797731568998,0.396011396011396,0.527180783817952,0.9001497372791375
