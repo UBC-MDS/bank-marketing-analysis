@@ -20,4 +20,5 @@ RUN conda install -y pandas=2.1.2 \
     pytest=7.4.3 \
     responses=0.24.1 \
     click=8.1.7 \
-    jupyter-book=0.15.1
+    jupyter-book=0.15.1 \
+    dataframe_image
