@@ -34,12 +34,12 @@ def main(raw_data, save_to, preprocessor_to, seed):
     Example:
     To run the script, use the following command in the terminal:
     ```
-    python script_name.py --raw_data='data/raw/bank-full.csv' --save_to='data/processed' --preprocessor_to='results/models' --seed=522
+    python scripts/split_and_process.py --raw_data='data/raw/bank-full.csv' --save_to='data/processed' --preprocessor_to='results/models' --seed=522
     ```
     """
 
     RANDOM_STATE = seed
-    bank = pd.read_csv(raw_data, sep=',')
+    bank = pd.read_csv(raw_data, sep=',', index_col=0)
 
 
     # create the split
@@ -48,6 +48,9 @@ def main(raw_data, save_to, preprocessor_to, seed):
                                         , random_state=RANDOM_STATE
                                         , stratify=bank.y
                                         )
+    
+    bank_train.to_csv(os.path.join(save_to, "bank_train.csv"))
+    bank_test.to_csv(os.path.join(save_to, "bank_test.csv"))
     
     X_train, y_train = bank_train.drop(columns=["y"]), bank_train["y"]
     X_test, y_test = bank_test.drop(columns=["y"]), bank_test["y"]

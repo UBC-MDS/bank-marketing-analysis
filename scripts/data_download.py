@@ -17,10 +17,10 @@ def main(url, save_path):
     - save_path (str): The local path where the data should be extracted.
 
     Example:
-    main(
-        url='https://archive.ics.uci.edu/static/public/222/data.csv',
-        save_path='data/raw'
-    )
+    To run the script, use the following command in the terminal:
+    ```
+    python scripts/data_download.py --url='https://archive.ics.uci.edu/static/public/222/data.csv' --save_path='data/raw'
+    ```
     """
     save_path = os.path.join(save_path, 'bank-full.csv')
     try:
