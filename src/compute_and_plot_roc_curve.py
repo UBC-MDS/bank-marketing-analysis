@@ -1,6 +1,7 @@
 import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
+import altair as alt
 from sklearn import metrics
 
 def compute_and_plot_roc_curve(model, testing_x, testing_y, name, figsize=(5,5)):
@@ -29,15 +30,15 @@ def compute_and_plot_roc_curve(model, testing_x, testing_y, name, figsize=(5,5))
     predict_prob = model.predict_proba(testing_x)
     fpr, tpr, threshold = metrics.roc_curve(testing_y, predict_prob[:,1])
     roc_auc = metrics.auc(fpr, tpr)
-    plt.figure(figsize=(5,5),facecolor="white")
-    plt.title('Receiver Operating Characteristic')
-    plt.plot(fpr, tpr, 'b', label = '{} : {:0.3f}'.format(name,roc_auc))
-    plt.legend(loc = 'lower right')
-    plt.plot([0, 1], [0, 1],'r--')
-    plt.xlim([0, 1])
-    plt.ylim([0, 1])
-    plt.ylabel('True Positive Rate')
-    plt.xlabel('False Positive Rate')
-    plt.show()
+
+    fig, ax = plt.subplots(figsize=figsize, facecolor="white")
+    ax.set_title('Receiver Operating Characteristic')
+    ax.plot(fpr, tpr, 'b', label='{} : {:0.3f}'.format(name, roc_auc))
+    ax.legend(loc='lower right')
+    ax.plot([0, 1], [0, 1], 'r--')
+    ax.set_xlim([0, 1])
+    ax.set_ylim([0, 1])
+    ax.set_ylabel('True Positive Rate')
+    ax.set_xlabel('False Positive Rate')
     
-    return fpr, tpr, roc_auc
+    return fig, ax, fpr, tpr, roc_auc
