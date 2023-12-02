@@ -2,6 +2,7 @@ import click
 import os
 import pandas as pd
 import pickle
+import numpy as np
 import matplotlib.pyplot as plt
 from sklearn.neighbors import KNeighborsClassifier
 from sklearn.pipeline import make_pipeline
@@ -72,7 +73,7 @@ def main(resampled_training_data, resampled_training_response, test_data, test_r
         --seed=522
     ```
     '''
-
+    np.random.seed(seed)
     RANDOM_STATE = seed
 
     X_tr = pd.read_csv(resampled_training_data, sep=",", index_col=0)    
