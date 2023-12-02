@@ -33,8 +33,48 @@ from src.model_report import model_report
 @click.option('--seed', type=int, default=522)
 
 def main(resampled_training_data, resampled_training_response, test_data, test_response, preprocessor_pipe, save_pipelines_to, save_plot_to, seed):
-    '''Fits a breast cancer classifier to the training data 
-    and saves the pipeline object.'''
+    '''
+    Fits various classifiers to the training data, performs hyperparameter tuning,
+    and saves the pipeline objects, hyperparameters, and evaluation results.
+
+    Parameters:
+    - resampled_training_data (str): Path to the CSV file containing resampled training data.
+    - resampled_training_response (str): Path to the CSV file containing resampled training response.
+    - test_data (str): Path to the CSV file containing test data.
+    - test_response (str): Path to the CSV file containing test response.
+    - preprocessor_pipe (str): Path to the preprocessor pipeline pickle file.
+    - save_pipelines_to (str): Directory to save the trained model pipelines.
+    - save_plot_to (str): Directory to save the evaluation plots.
+    - seed (int): Random seed for reproducibility.
+
+    Returns:
+    None
+
+    This function performs the following steps:
+    1. Reads the data from CSV files.
+    2. Loads a preprocessor pipeline from a pickle file.
+    3. Defines a set of classifiers for Decision Tree, KNN, Naive Bayes, and Logistic Regression.
+    4. Performs hyperparameter tuning using RandomizedSearchCV for Logistic Regression and KNN.
+    5. Saves the best models, hyperparameters, and evaluation results to pickle files.
+    6. Generates and saves evaluation plots, including ROC curves and classification reports.
+
+    Note:
+    - The function assumes the existence of utility functions, such as `compute_and_plot_roc_curve` and `model_report`.
+    - Make sure to run this script as a standalone program to execute the main function.
+
+    Example:
+    ```bash
+    python scripts/fit_bank_classifier.py \
+        --resampled_training_data='data/processed/X_train_resmp.csv' \
+        --resampled_training_response='data/processed/y_train_resmp.csv' \
+        --test_data='data/processed/X_test.csv' \
+        --test_response='data/processed/y_test.csv' \
+        --preprocessor_pipe='results/models/bank_preprocessor.pickle' \
+        --save_pipelines_to='results/models' \
+        --save_plot_to='results/figures' \
+        --seed=522
+    ```
+    '''
 
     RANDOM_STATE = seed
 
