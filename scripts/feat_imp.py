@@ -7,12 +7,12 @@ import matplotlib.pyplot as plt
 
 
 @click.command()
-@click.option('--resampled_training_data', type=str, default='data/processed/X_train_trans.csv')
+@click.option('--transformed_training_data', type=str, default='data/processed/X_train_trans.csv')
 @click.option('--pipeline_model', type=str, default='results/models/logistic_pipeline.pickle')
 @click.option('--save_plot_to', type=str, default='results/figures')
 @click.option('--seed', type=int, default=522)
 
-def main(resampled_training_data, pipeline_model, save_plot_to, seed):
+def main(transformed_training_data, pipeline_model, save_plot_to, seed):
     '''Evaluates the breast cancer classifier on the test data, extracts feature importance, and saves a bar plot.
 
     Parameters:
@@ -38,7 +38,7 @@ def main(resampled_training_data, pipeline_model, save_plot_to, seed):
     with open(pipeline_model, 'rb') as f:
         bank_lr_fit = pickle.load(f)
 
-    X_tr = pd.read_csv(resampled_training_data, sep=",")    
+    X_tr = pd.read_csv(transformed_training_data, sep=",", index_col=0)    
     logistic_regression_model = bank_lr_fit.named_steps['logisticregression']
     coefficients = list(logistic_regression_model.coef_[0])
     feature_names = X_tr.columns.to_list()
