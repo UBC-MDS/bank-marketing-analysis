@@ -1,6 +1,6 @@
 services:
   bank-marketing-analysis:
-    image: shizhezhang/bank-marketing-analysis:78ef7d0
+    image: shizhezhang/bank-marketing-analysis:6b67f6b
     ports:
       - "8888:8888"
     volumes:
