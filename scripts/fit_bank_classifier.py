@@ -15,7 +15,7 @@ from sklearn.linear_model import LogisticRegression
 from scipy.stats import loguniform, randint, uniform
 from sklearn import metrics
 from joblib import dump
-import dataframe_image as dfi
+# import dataframe_image as dfi
 import sys
 sys.path.append(os.path.join(os.path.dirname(__file__), '..'))
 from src.compute_and_plot_roc_curve import compute_and_plot_roc_curve
@@ -130,8 +130,8 @@ def main(resampled_training_data, resampled_training_response, test_data, test_r
     params_df = pd.DataFrame(list(random_search.best_params_.items()), columns=['Parameter', 'Value'])
     score_df = pd.DataFrame({"Metric": ["Best Score"], "Value": [random_search.best_score_]})
 
-    dfi.export(params_df, os.path.join(save_plot_to, 'lr_best_params.png'), table_conversion='chrome', fontsize=40, max_rows=None, max_cols=None)
-    dfi.export(score_df, os.path.join(save_plot_to, 'lr_best_score.png'), table_conversion='chrome', fontsize=40, max_rows=None, max_cols=None)
+    # dfi.export(params_df, os.path.join(save_plot_to, 'lr_best_params.png'), table_conversion='chrome', fontsize=40, max_rows=None, max_cols=None)
+    # dfi.export(score_df, os.path.join(save_plot_to, 'lr_best_score.png'), table_conversion='chrome', fontsize=40, max_rows=None, max_cols=None)
 
 
     # Logistic Regression: On the test set
@@ -157,8 +157,8 @@ def main(resampled_training_data, resampled_training_response, test_data, test_r
 
     model_lr, classification_rep = model_report(pipe_lr, X_test, y_test, "Logistic Regression", os.path.join(save_plot_to, 'lr_conf_matr.png'))
 
-    dfi.export(classification_rep, os.path.join(save_plot_to, 'lr_class_rep.png'), table_conversion='chrome', fontsize=40, max_rows=None, max_cols=None)
-    dfi.export(model_lr, os.path.join(save_plot_to, 'lr_model.png'), table_conversion='chrome', fontsize=40, max_rows=None, max_cols=None)
+    # dfi.export(classification_rep, os.path.join(save_plot_to, 'lr_class_rep.png'), table_conversion='chrome', fontsize=40, max_rows=None, max_cols=None)
+    # dfi.export(model_lr, os.path.join(save_plot_to, 'lr_model.png'), table_conversion='chrome', fontsize=40, max_rows=None, max_cols=None)
 
 
 
@@ -197,8 +197,8 @@ def main(resampled_training_data, resampled_training_response, test_data, test_r
     params_df = pd.DataFrame(list(grid_search.best_params_.items()), columns=['Parameter', 'Value'])
     score_df = pd.DataFrame({"Metric": ["Best Score"], "Value": [grid_search.best_score_]})
 
-    dfi.export(params_df, os.path.join(save_plot_to, 'KNN_best_params.png'), table_conversion='chrome', fontsize=40, max_rows=None, max_cols=None)
-    dfi.export(score_df, os.path.join(save_plot_to, 'KNN_best_score.png'), table_conversion='chrome', fontsize=40, max_rows=None, max_cols=None)
+    # dfi.export(params_df, os.path.join(save_plot_to, 'KNN_best_params.png'), table_conversion='chrome', fontsize=40, max_rows=None, max_cols=None)
+    # dfi.export(score_df, os.path.join(save_plot_to, 'KNN_best_score.png'), table_conversion='chrome', fontsize=40, max_rows=None, max_cols=None)
 
 
     # KNN: On the test set
@@ -224,8 +224,8 @@ def main(resampled_training_data, resampled_training_response, test_data, test_r
     
     fig_knn.savefig(os.path.join(save_plot_to, 'KNN_roc_auc.png'), bbox_inches='tight', dpi=200)
 
-    dfi.export(classification_rep, os.path.join(save_plot_to, 'KNN_class_rep.png'), table_conversion='chrome', fontsize=40, max_rows=None, max_cols=None)
-    dfi.export(model_knn, os.path.join(save_plot_to, 'KNN_model.png'), table_conversion='chrome', fontsize=40, max_rows=None, max_cols=None)
+    # dfi.export(classification_rep, os.path.join(save_plot_to, 'KNN_class_rep.png'), table_conversion='chrome', fontsize=40, max_rows=None, max_cols=None)
+    # dfi.export(model_knn, os.path.join(save_plot_to, 'KNN_model.png'), table_conversion='chrome', fontsize=40, max_rows=None, max_cols=None)
 
     # Decision Tree: Tuning
 
@@ -265,8 +265,8 @@ def main(resampled_training_data, resampled_training_response, test_data, test_r
     params_df = pd.DataFrame(list(random_search.best_params_.items()), columns=['Parameter', 'Value'])
     score_df = pd.DataFrame({"Metric": ["Best Score"], "Value": [random_search.best_score_]})
 
-    dfi.export(params_df, os.path.join(save_plot_to, 'dt_best_params.png'), table_conversion='chrome', fontsize=40, max_rows=None, max_cols=None)
-    dfi.export(score_df, os.path.join(save_plot_to, 'dt_best_score.png'), table_conversion='chrome', fontsize=40, max_rows=None, max_cols=None)
+    # dfi.export(params_df, os.path.join(save_plot_to, 'dt_best_params.png'), table_conversion='chrome', fontsize=40, max_rows=None, max_cols=None)
+    # dfi.export(score_df, os.path.join(save_plot_to, 'dt_best_score.png'), table_conversion='chrome', fontsize=40, max_rows=None, max_cols=None)
 
 
     # Decision Tree: On the test set
@@ -292,8 +292,8 @@ def main(resampled_training_data, resampled_training_response, test_data, test_r
     
     fig_dt.savefig(os.path.join(save_plot_to, 'dt_roc_auc.png'), bbox_inches='tight', dpi=200)
 
-    dfi.export(classification_rep, os.path.join(save_plot_to, 'dt_class_rep.png'), table_conversion='chrome', fontsize=40, max_rows=None, max_cols=None)
-    dfi.export(model_dt, os.path.join(save_plot_to, 'dt_model.png'), table_conversion='chrome', fontsize=40, max_rows=None, max_cols=None)
+    # dfi.export(classification_rep, os.path.join(save_plot_to, 'dt_class_rep.png'), table_conversion='chrome', fontsize=40, max_rows=None, max_cols=None)
+    # dfi.export(model_dt, os.path.join(save_plot_to, 'dt_model.png'), table_conversion='chrome', fontsize=40, max_rows=None, max_cols=None)
 
     # Naive Bayes: Tuning
     param_dist = {
@@ -331,8 +331,8 @@ def main(resampled_training_data, resampled_training_response, test_data, test_r
     params_df = pd.DataFrame(list(random_search.best_params_.items()), columns=['Parameter', 'Value'])
     score_df = pd.DataFrame({"Metric": ["Best Score"], "Value": [random_search.best_score_]})
 
-    dfi.export(params_df, os.path.join(save_plot_to, 'nb_best_params.png'), table_conversion='chrome', fontsize=40, max_rows=None, max_cols=None)
-    dfi.export(score_df, os.path.join(save_plot_to, 'nb_best_score.png'), table_conversion='chrome', fontsize=40, max_rows=None, max_cols=None)
+    # dfi.export(params_df, os.path.join(save_plot_to, 'nb_best_params.png'), table_conversion='chrome', fontsize=40, max_rows=None, max_cols=None)
+    # dfi.export(score_df, os.path.join(save_plot_to, 'nb_best_score.png'), table_conversion='chrome', fontsize=40, max_rows=None, max_cols=None)
 
 
     # Naive Bayes: On the test set
@@ -355,8 +355,8 @@ def main(resampled_training_data, resampled_training_response, test_data, test_r
 
     fig_nb.savefig(os.path.join(save_plot_to, 'nb_roc_auc.png'), bbox_inches='tight', dpi=200)
 
-    dfi.export(classification_rep, os.path.join(save_plot_to, 'nb_class_rep.png'), table_conversion='chrome', fontsize=40, max_rows=None, max_cols=None)
-    dfi.export(model_nb, os.path.join(save_plot_to, 'nb_model.png'), table_conversion='chrome', fontsize=40, max_rows=None, max_cols=None)
+    # dfi.export(classification_rep, os.path.join(save_plot_to, 'nb_class_rep.png'), table_conversion='chrome', fontsize=40, max_rows=None, max_cols=None)
+    # dfi.export(model_nb, os.path.join(save_plot_to, 'nb_model.png'), table_conversion='chrome', fontsize=40, max_rows=None, max_cols=None)
 
 
 if __name__ == '__main__':
