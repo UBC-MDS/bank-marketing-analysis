@@ -4,7 +4,7 @@ import matplotlib.pyplot as plt
 from sklearn import metrics
 from sklearn.metrics import confusion_matrix,f1_score, roc_auc_score, classification_report, recall_score, precision_score
 
-def model_report(model, testing_x, testing_y, name, customerized_threshold=False, threshold=0.5, plot_confusion_matrix = True) :
+def model_report(model, testing_x, testing_y, name, export_path, customerized_threshold=False, threshold=0.5, plot_confusion_matrix = True) :
     """
     Generate and print a performance report of a machine learning model on test data.
 
@@ -39,11 +39,10 @@ def model_report(model, testing_x, testing_y, name, customerized_threshold=False
     precision    = precision_score(testing_y,predictions)
     roc_auc      = roc_auc_score(testing_y,predictions_prob[:, 1])
     f1score      = f1_score(testing_y,predictions) 
-
     
     # classification_report
-    print(classification_report(testing_y,predictions))
-    
+    classification_rep = pd.DataFrame(classification_report(testing_y, predictions, output_dict=True)).transpose()    
+
     # customered_confusion_matrix
     if plot_confusion_matrix:   
         fact = testing_y
@@ -53,8 +52,8 @@ def model_report(model, testing_x, testing_y, name, customerized_threshold=False
         plt.figure(figsize=(5,5), dpi=100)
         plt.imshow(confusion, cmap=plt.cm.Blues)
         indices = range(len(confusion))
-        plt.xticks(indices, classes,fontsize=10)
-        plt.yticks(indices, classes,fontsize=10)
+        plt.xticks(indices, indices, fontsize=10)
+        plt.yticks(indices, indices, fontsize=10)
         plt.colorbar()
         plt.xlabel('Predictions',fontsize=10)
         plt.ylabel('Ground Turth',fontsize=10)
@@ -62,11 +61,16 @@ def model_report(model, testing_x, testing_y, name, customerized_threshold=False
             for second_index in range(len(confusion[first_index])):
                 plt.text(first_index, second_index, confusion[first_index][second_index],va = 'center',ha = 'center',c='darkorange',fontsize=10)
         plt.grid(False)
-    
+
+    if export_path:
+            plt.savefig(export_path, bbox_inches='tight', dpi=200)
+
+
     df = pd.DataFrame({"Model"           : [name],
                        "Recall_score"    : [recallscore],
                        "Precision"       : [precision],
                        "f1_score"        : [f1score],
                        "Area_under_curve": [roc_auc]
                       })
-    return df
+    
+    return df, classification_rep
