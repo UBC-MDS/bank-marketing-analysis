@@ -46,4 +46,3 @@ cd work
 jupyter-book build report
 cp -r report/_build/html/* docs
 
-Issue detected: Log continuous instead of log categorical subtitle

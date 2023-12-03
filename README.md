@@ -12,7 +12,7 @@ The dataset used in this project originates from the Bank Marketing dataset crea
 
 ## Report
 
-The final report can be found [here](notebooks/analysis.html).
+The final report can be found [here](https://ubc-mds.github.io/bank-marketing-analysis/).
 
 ## Usage
 
@@ -27,14 +27,55 @@ The final report can be found [here](notebooks/analysis.html).
 1.  Navigate to the root of this project on your computer using the command line and enter the following command:
 
 ```         
-docker compose up
+docker compose up jupyter-lab
 ```
 
 2.  In the terminal, look for a URL that starts with `http://127.0.0.1:8888/lab?token=` (for an example, see the highlighted text in the terminal below). Copy and paste that URL into your browser.
 
 ![](img/jupyter-container-web-app-launch-url.png)
 
-3.  To run the analysis, open `notebooks/analysis.ipynb` in Jupyter Lab you just launched and under the "Kernel" menu click "Restart Kernel and Run All Cells...".
+3.  To run the analysis, enter the following commands in the terminal in the project root:
+```
+# Download and save data
+python scripts/data_download.py \
+   --url='https://archive.ics.uci.edu/static/public/222/data.csv' \
+   --save_path='data/raw'
+
+# Split data (train-test), process data and save preprocessorsplit
+python scripts/split_and_process.py \
+   --raw_data='data/raw/bank-full.csv' \
+   --save_to='data/processed' \
+   --preprocessor_to='results/models' \ 
+   --seed=522
+
+# eda plots
+python scripts/eda.py \
+   --training_data='data/processed/bank_train.csv' \
+   --save_plot_to='results/figures'
+
+
+# model training, tuning, and save plot and model
+python scripts/fit_bank_classifier.py \
+    --resampled_training_data='data/processed/X_train_resmp.csv' \
+    --resampled_training_response='data/processed/y_train_resmp.csv' \
+    --test_data='data/processed/X_test.csv' \
+    --test_response='data/processed/y_test.csv' \
+    --preprocessor_pipe='results/models/bank_preprocessor.pickle' \
+    --save_pipelines_to='results/models' \
+    --save_plot_to='results/figures' \
+    --seed=522
+
+# evaluate model
+python scripts/feat_imp.py \
+     --resampled_training_data='data/processed/X_train_trans.csv' \
+     --pipeline_model='results/models/logistic_pipeline.pickle' \
+     --save_plot_to='results/figures' 
+     --seed=522
+
+# build HTML report and copy build to docs folder
+jupyter-book build report
+cp -r report/_build/html/* docs
+```
 
 #### Clean up
 
