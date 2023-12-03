@@ -1,6 +1,6 @@
 services:
   jupyter-lab:
-    image: shizhezhang/bank-marketing-analysis:2dcd915
+    image: shizhezhang/bank-marketing-analysis:eabea47
     ports:
       - "8888:8888"
     volumes:
@@ -12,7 +12,7 @@ services:
     platform: linux/amd64
 
   terminal:
-    image: shizhezhang/bank-marketing-analysis:2dcd915
+    image: shizhezhang/bank-marketing-analysis:eabea47
     volumes:
       - .:/home/jovyan
     deploy:
