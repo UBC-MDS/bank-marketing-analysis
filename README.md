@@ -73,8 +73,9 @@ python scripts/feat_imp.py \
      --seed=522
 
 # build HTML report and copy build to docs folder
-# first open a new terminal under the root folder of the project, and run the following to open a new terminal in the container and
+# first open a new terminal under the root folder of the project, and run the following to open a new terminal in the container
 docker compose exec jupyter-lab /bin/bash
+
 # in the terminal of the container, run
 cd work
 jupyter-book build report
