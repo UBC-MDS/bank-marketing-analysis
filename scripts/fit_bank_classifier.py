@@ -159,7 +159,7 @@ def main(resampled_training_data, resampled_training_response, test_data, test_r
 
     # dfi.export(classification_rep, os.path.join(save_plot_to, 'lr_class_rep.png'), table_conversion='chrome', fontsize=40, max_rows=None, max_cols=None)
     # dfi.export(model_lr, os.path.join(save_plot_to, 'lr_model.png'), table_conversion='chrome', fontsize=40, max_rows=None, max_cols=None)
-    classification_rep.to_csv(os.path.join(save_plot_to, 'lr_class_rep.csv'), index=False)
+    classification_rep.to_csv(os.path.join(save_plot_to, 'lr_class_rep.csv'), index=True)
     model_lr.to_csv(os.path.join(save_plot_to, 'lr_model.csv'), index=False)
 
 
@@ -229,7 +229,7 @@ def main(resampled_training_data, resampled_training_response, test_data, test_r
 
     # dfi.export(classification_rep, os.path.join(save_plot_to, 'KNN_class_rep.png'), table_conversion='chrome', fontsize=40, max_rows=None, max_cols=None)
     # dfi.export(model_knn, os.path.join(save_plot_to, 'KNN_model.png'), table_conversion='chrome', fontsize=40, max_rows=None, max_cols=None)
-    classification_rep.to_csv(os.path.join(save_plot_to, 'KNN_class_rep.csv'), index=False)
+    classification_rep.to_csv(os.path.join(save_plot_to, 'KNN_class_rep.csv'), index=True)
     model_knn.to_csv(os.path.join(save_plot_to, 'KNN_model.csv'), index=False)
 
     # Decision Tree: Tuning
@@ -300,7 +300,7 @@ def main(resampled_training_data, resampled_training_response, test_data, test_r
 
     # dfi.export(classification_rep, os.path.join(save_plot_to, 'dt_class_rep.png'), table_conversion='chrome', fontsize=40, max_rows=None, max_cols=None)
     # dfi.export(model_dt, os.path.join(save_plot_to, 'dt_model.png'), table_conversion='chrome', fontsize=40, max_rows=None, max_cols=None)
-    classification_rep.to_csv(os.path.join(save_plot_to, 'dt_class_rep.csv'), index=False)
+    classification_rep.to_csv(os.path.join(save_plot_to, 'dt_class_rep.csv'), index=True)
     model_dt.to_csv(os.path.join(save_plot_to, 'dt_model.csv'), index=False)
 
     # Naive Bayes: Tuning
@@ -366,7 +366,7 @@ def main(resampled_training_data, resampled_training_response, test_data, test_r
 
     # dfi.export(classification_rep, os.path.join(save_plot_to, 'nb_class_rep.png'), table_conversion='chrome', fontsize=40, max_rows=None, max_cols=None)
     # dfi.export(model_nb, os.path.join(save_plot_to, 'nb_model.png'), table_conversion='chrome', fontsize=40, max_rows=None, max_cols=None)
-    classification_rep.to_csv(os.path.join(save_plot_to, 'nb_class_rep.csv'), index=False)
+    classification_rep.to_csv(os.path.join(save_plot_to, 'nb_class_rep.csv'), index=True)
     model_nb.to_csv(os.path.join(save_plot_to, 'nb_model.csv'), index=False)
 
     # Performance
