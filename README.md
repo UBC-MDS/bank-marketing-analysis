@@ -67,7 +67,7 @@ python scripts/fit_bank_classifier.py \
 
 # evaluate model
 python scripts/feat_imp.py \
-     --resampled_training_data='data/processed/X_train_trans.csv' \
+     --transformed_training_data='data/processed/X_train_trans.csv' \
      --pipeline_model='results/models/logistic_pipeline.pickle' \
      --save_plot_to='results/figures' 
      --seed=522
