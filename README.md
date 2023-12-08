@@ -1,4 +1,4 @@
-# Predicting Bank Marketing Succuss on Term Deposit Subsciption
+# Predicting Bank Marketing Succuss on Term Deposit Subscription
 
 -   Team: Marco Bravo, Nasim Ghazanfari Nasrabadi, Shizhe Zhang, Celeste Zhao
 
