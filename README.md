@@ -85,6 +85,10 @@ python scripts/feat_imp.py \
 cd work
 jupyter-book build report
 cp -r report/_build/html/* docs
+
+# Clean up
+
+# To shut down the container and clean up the resources, type `Cntrl` + `C` in the terminal where you launched the container, and then type `docker compose rm`
 ```
 
 2.  You can also reproduce the whole process above using makefile. Open a terminal in the root folder of this project, and run the following command.
@@ -97,10 +101,6 @@ make clean
 ```
 
 
-
-#### Clean up
-
-1.  To shut down the container and clean up the resources, type `Cntrl` + `C` in the terminal where you launched the container, and then type `docker compose rm`
 
 ## Developer notes
 
