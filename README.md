@@ -87,7 +87,7 @@ jupyter-book build report
 cp -r report/_build/html/* docs
 ```
 
-	2. You can also reproduce the whole process above using makefile. Open a terminal in the root folder of this project, and run the following command.
+2.  You can also reproduce the whole process above using makefile. Open a terminal in the root folder of this project, and run the following command.
 
 ```
 # open the container, run all the scripts and build the jupyter book
