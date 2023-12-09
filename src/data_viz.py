@@ -1,3 +1,6 @@
+import warnings
+warnings.filterwarnings("ignore", category=RuntimeWarning, message="divide by zero encountered in log1p")
+warnings.filterwarnings("ignore", category=RuntimeWarning, message="invalid value encountered in log1p")
 import altair as alt
 import numpy as np
 import pandas as pd
