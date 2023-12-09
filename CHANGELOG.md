@@ -5,3 +5,5 @@
 
 - README.md: Removed white unnecessary white spaces in command line instructions.
 - feat_imp.py: resampled_training_data changed to transformed_training_data.
+
+- test-data_viz.py: Added tests to verify that input is not null and type of input.
