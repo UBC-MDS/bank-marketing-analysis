@@ -7,4 +7,4 @@
 
 - feat_imp.py: resampled_training_data changed to transformed_training_data.
 
-- data_viz.py: plot_variables function fixed to check inputs.
+- data_viz.py: plot_variables function fixed to check inputs. FutureWarnings hidden.
