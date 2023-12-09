@@ -77,9 +77,10 @@ def main(resampled_training_data, resampled_training_response, test_data, test_r
     RANDOM_STATE = seed
 
     X_tr = pd.read_csv(resampled_training_data, sep=",", index_col=0)    
-    y_tr = pd.read_csv(resampled_training_response, sep=",", index_col=0)
+    y_tr = pd.read_csv(resampled_training_response, sep=",", index_col=0).values.ravel()
+
     X_test = pd.read_csv(test_data, sep=",", index_col=0)    
-    y_test = pd.read_csv(test_response, sep=",", index_col=0)
+    y_test = pd.read_csv(test_response, sep=",", index_col=0).values.ravel()
 
     preprocessor = pickle.load(open(preprocessor_pipe, "rb"))
 
