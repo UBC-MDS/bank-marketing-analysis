@@ -16,7 +16,7 @@ def main(transformed_training_data, pipeline_model, save_plot_to, seed):
     '''Evaluates the breast cancer classifier on the test data, extracts feature importance, and saves a bar plot.
 
     Parameters:
-        resampled_training_data (str): Path to the preprocessed training data file.
+        transformed_training_data (str): Path to the preprocessed training data file.
         pipeline_model (str): Path to the saved logistic regression pipeline model.
         save_plot_to (str): Directory to save the feature importance plot.
         seed (int): Seed for reproducibility
@@ -24,7 +24,7 @@ def main(transformed_training_data, pipeline_model, save_plot_to, seed):
     Example:
     ```bash
     python scripts/feat_imp.py \
-        --resampled_training_data='data/processed/X_train_trans.csv' \
+        --transformed_training_data='data/processed/X_train_trans.csv' \
         --pipeline_model='results/models/logistic_pipeline.pickle' \
         --save_plot_to='results/figures' \
         --seed=522

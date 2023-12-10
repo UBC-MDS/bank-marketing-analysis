@@ -1,7 +1,22 @@
+import warnings
+warnings.filterwarnings("ignore", category=RuntimeWarning, message="divide by zero encountered in log1p")
+warnings.filterwarnings("ignore", category=RuntimeWarning, message="invalid value encountered in log1p")
 import altair as alt
 import numpy as np
 import pandas as pd
 alt.data_transformers.disable_max_rows()
+
+def validate_input(data, variables, var_type, target_var, ignore_vars):
+    if not isinstance(data, pd.DataFrame):
+        raise ValueError("Input 'data' must be a DataFrame.")
+    if not isinstance(variables, list):
+        raise ValueError("Input 'variables' must be a list.")
+    if var_type not in ['categorical', 'continuous', 'log']:
+        raise ValueError("Input 'var_type' must be one of 'categorical', 'continuous', or 'log'.")
+    if not isinstance(target_var, str):
+        raise ValueError("Input 'target_var' must be a string.")
+    if ignore_vars and not isinstance(ignore_vars, list):
+        raise ValueError("Input 'ignore_vars' must be a list if provided.")
 
 
 def plot_variables(data: pd.DataFrame, 
@@ -24,6 +39,10 @@ def plot_variables(data: pd.DataFrame,
     Returns:
     - alt.Chart: The Altair chart containing the visualizations.
     """
+
+    validate_input(data, variables, var_type, target_var, ignore_vars)
+
+
     charts = []
 
     for i, var in enumerate(variables):

@@ -40,3 +40,21 @@ def test_plot_variables_ignore_variables():
     assert len(ignore_chart.to_dict()['concat']) == 1
 
 
+
+
+def test_plot_variables_not_empty():
+    chart = plot_variables(data, variables=['var1'], var_type='categorical')
+    assert chart is not None, "Generated chart is empty."
+
+
+
+def test_plot_variables_valid_var_type():
+    valid_var_types = ['categorical', 'continuous', 'log']
+    
+    for var_type in valid_var_types:
+        if var_type == 'log':
+            chart = plot_variables(data, variables=['var2'], var_type=var_type)
+        else:
+            chart = plot_variables(data, variables=['var1'], var_type=var_type)
+        
+        assert isinstance(chart, alt.ConcatChart), f"Failed for var_type: {var_type}"
