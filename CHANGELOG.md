@@ -34,6 +34,8 @@ https://github.com/UBC-MDS/bank-marketing-analysis/blob/main/src/data_read.py
 - data_write.py: added a seperate function for writing the data into a dataframe.
 https://github.com/UBC-MDS/bank-marketing-analysis/blob/main/src/data_write.py
 
+- test-data_read.py: added test for new functions.
+https://github.com/UBC-MDS/bank-marketing-analysis/blob/main/tests/test-data_read.py
 
 
 ## Report content
