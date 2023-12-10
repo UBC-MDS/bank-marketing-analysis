@@ -27,6 +27,13 @@
 
 - test-model_report.py: added expected and edge-case input test examples.
     https://github.com/UBC-MDS/bank-marketing-analysis/commit/38bf744fb9dccd06540d5d8ec188a5f1686a487d
+    
+- data_read.py: added a seperate function for reading the data only.
+https://github.com/UBC-MDS/bank-marketing-analysis/blob/main/src/data_read.py
+
+- data_write.py: added a seperate function for writing the data into a dataframe.
+https://github.com/UBC-MDS/bank-marketing-analysis/blob/main/src/data_write.py
+
 
 
 ## Report content
